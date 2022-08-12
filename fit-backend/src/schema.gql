@@ -8,7 +8,7 @@ type User {
   name: String!
   email: String!
   password: String!
-  posts: [ID!]!
+  posts: [String!]!
 }
 
 type Post {
@@ -20,24 +20,22 @@ type Post {
   user: String!
 }
 
+type LoginResponse {
+  access_token: String!
+  user: User!
+}
+
 type Query {
-  getUsers: [User!]!
-  getUserById(userId: String!): User!
   getPosts: [Post!]!
   getPostById(userId: String!): [Post!]!
+  getUsers: [User!]!
+  getUserById(userId: String!): User!
 }
 
 type Mutation {
-  createUser(createUserInput: CreateUserInput!): User!
   createPost(createPostInput: CreatePostInput!): Post!
-}
-
-input CreateUserInput {
-  role: String!
-  name: String!
-  email: String!
-  password: String!
-  posts: [String!]!
+  register(registerInput: RegisterUserInput!): User!
+  login(loginInput: LoginUserInput!): LoginResponse!
 }
 
 input CreatePostInput {
@@ -46,4 +44,16 @@ input CreatePostInput {
   type: String!
   active: Boolean!
   user: String!
+}
+
+input RegisterUserInput {
+  role: String!
+  name: String!
+  email: String!
+  password: String!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
 }

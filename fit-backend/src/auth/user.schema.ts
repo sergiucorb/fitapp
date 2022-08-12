@@ -34,7 +34,7 @@ export class User {
       { type: mongoose.Schema.Types.ObjectId, ref: 'Post', required: false },
     ],
   })
-  @Field(() => [ID])
+  @Field(() => [String])
   posts: string[];
 }
 

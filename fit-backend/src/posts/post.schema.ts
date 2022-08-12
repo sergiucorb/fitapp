@@ -2,7 +2,7 @@
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
-import { User } from '../users/user.schema';
+import { User } from '../auth/user.schema';
 import { ObjectId } from 'mongoose';
 
 export type PostDocument = Post & Document;
