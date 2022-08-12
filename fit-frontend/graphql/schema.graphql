@@ -1,0 +1,27 @@
+# fragment PostData on Posts {
+#   id
+#   name
+#   type
+#   description
+# }
+fragment UserData on User {
+  name
+  email
+  password
+}
+
+query Users {
+  getUsers {
+    ...UserData
+  }
+}
+# query UsersById($userId: Float!) {
+#   getUsersById(userId: $userId) {
+#     ...UserData
+#   }
+# }
+# query Posts {
+#   getPosts {
+#     ...PostData
+#   }
+# }
