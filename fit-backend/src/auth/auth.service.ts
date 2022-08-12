@@ -10,15 +10,9 @@ import { RegisterUserInput } from './dto/register-user-input';
 import { User, UserDocument } from './user.schema';
 import { LoginUserInput } from './dto/login-user-input';
 import * as bcrypt from 'bcrypt';
-import { UserInputError } from 'apollo-server-express';
 import { JwtService } from '@nestjs/jwt';
-import { access } from 'fs';
 import { LoginResponse } from './dto/login-response';
-UserInputError;
-// interface SingInCredentials {}
-interface AuthToken {
-  accessToken: User;
-}
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -29,6 +23,7 @@ export class AuthService {
   async getUsers(): Promise<User[]> {
     return this.userModel.find().exec();
   }
+
   async getUserById(userId: string): Promise<User> {
     const user = await this.userModel.findOne({ _id: userId });
     if (!user) {
