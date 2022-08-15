@@ -3,11 +3,11 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import { jwtConstants } from './constants';
-// import * as dotenv from 'dotenv';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt-strategy') {
   constructor() {
+    console.log('JWT STRATEGY');
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
@@ -15,7 +15,15 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
+  //this callback is call after GQL GUARD SUCCEED
   async validate(payload: any) {
-    return { userId: payload.sub, username: payload.username };
+    //decoded jwt from signed in payload
+    console.log('PAYLOAD:   ', payload);
+    return {
+      id: payload.id,
+      user: payload.name,
+      email: payload.email,
+      age: '28',
+    }; //return user context -> available everywhere
   }
 }

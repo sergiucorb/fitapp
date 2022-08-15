@@ -13,7 +13,7 @@ import { jwtConstants } from './constants';
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     PassportModule,
     JwtModule.register({
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '60s' }, // 6 min
       secret: jwtConstants.secret,
     }),
   ],

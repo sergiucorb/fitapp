@@ -21,6 +21,7 @@ export class AuthService {
   ) {}
 
   async getUsers(): Promise<User[]> {
+    console.log('SERVICES');
     return this.userModel.find().exec();
   }
 
@@ -64,7 +65,7 @@ export class AuthService {
         HttpStatus.BAD_REQUEST,
       );
     }
-    const payload = { user: user.name, email: user.email };
+    const payload = { id: user._id, name: user.name, email: user.email };
     const access_token = this.jwtService.sign(payload);
     return { user, access_token } as LoginResponse;
   }

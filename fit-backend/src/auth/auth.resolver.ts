@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { User } from 'src/auth/user.schema';
 import { AuthService } from './auth.service';
 import { LoginResponse } from './dto/login-response';
@@ -13,7 +13,8 @@ export class AuthResolver {
 
   @UseGuards(GqlAuthGuard)
   @Query(() => [User])
-  getUsers(): Promise<User[]> {
+  getUsers(@Context() context): Promise<User[]> {
+    console.log('Controller:', context.req.user);
     return this.usersService.getUsers();
   }
 

@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://fitappdb:fitappdb@fitcluster.ovalrl9.mongodb.net/test?retryWrites=true&w=majority',
+      'mongodb+srv://fitappdb:fitappdb@fitcluster.ovalrl9.mongodb.net/fit_db?retryWrites=true&w=majority',
     ),
   ],
 })
